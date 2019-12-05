@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="LoginAction" class="huudn.actions.LoginAction"> 
+            <result name="success">index.jsp</result>
+            <result name="error">error.jsp</result>
+            <result name="invalid">login.jsp</result>
+        </action>
+        
+        <action name="RegisterAction" class="huudn.actions.RegisterAction">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="success">login.jsp</result>
+            <result name="error">error.jsp</result>
+            <result name="input">register.jsp</result>
+        </action>
+    </package>
+</struts>
