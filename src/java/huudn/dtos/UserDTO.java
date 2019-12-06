@@ -12,25 +12,26 @@ import java.io.Serializable;
  * @author ngochuu
  */
 public class UserDTO implements Serializable {
-    private String username, password, fullname, phone, address, avatar, email, roleName;
+    private String username, password, fullname, phone, address, email, roleName;
+    private byte [] avatar;
     private boolean active;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String fullname, String phone, String address, String avatar, String email, String roleName, boolean active) {
+    public UserDTO(String username, String password, String fullname, String phone, String address, String email, String roleName, byte[] avatar, boolean active) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.phone = phone;
         this.address = address;
-        this.avatar = avatar;
         this.email = email;
         this.roleName = roleName;
+        this.avatar = avatar;
         this.active = active;
     }
-    
-    //Contructer without avatar
+
+    //contructor without avatar
     public UserDTO(String username, String password, String fullname, String phone, String address, String email, String roleName, boolean active) {
         this.username = username;
         this.password = password;
@@ -82,14 +83,6 @@ public class UserDTO implements Serializable {
         this.address = address;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -106,6 +99,14 @@ public class UserDTO implements Serializable {
         this.roleName = roleName;
     }
 
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -113,4 +114,5 @@ public class UserDTO implements Serializable {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 }

@@ -5,8 +5,15 @@
  */
 package huudn.utils;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.MessageDigest;
+import javax.imageio.ImageIO;
+import sun.misc.BASE64Encoder;
 
 /**
  *

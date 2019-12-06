@@ -5,17 +5,32 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        <action name="LoginAction" class="huudn.actions.LoginAction"> 
-            <result name="success">index.jsp</result>
+        <action name="LoginAction" class="huudn.actions.LoginAction">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="success" type="redirect">index.jsp</result>
             <result name="error">error.jsp</result>
             <result name="invalid">login.jsp</result>
+            <result name="input">login.jsp</result>
         </action>
         
         <action name="RegisterAction" class="huudn.actions.RegisterAction">
             <exception-mapping exception="java.lang.Exception" result="input"/>
-            <result name="success">login.jsp</result>
+            <result name="success" type="redirect">login.jsp</result>
             <result name="error">error.jsp</result>
             <result name="input">register.jsp</result>
+        </action>
+        
+        <action name="LogoutAction" class="huudn.actions.LogoutAction">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="success" type="redirect">index.jsp</result>
+            <result name="input">index.jsp</result>
+        </action>
+        
+        <action name="ShowInfoAction" class="huudn.actions.ShowInfoAction">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="success">info.jsp</result>
+            <result name="error">error.jsp</result>
+            <result name="input">index.jsp</result>
         </action>
     </package>
 </struts>
