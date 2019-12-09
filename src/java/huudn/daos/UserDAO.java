@@ -8,11 +8,6 @@ package huudn.daos;
 import huudn.dtos.UserDTO;
 import huudn.utils.DatabaseUtils;
 import huudn.utils.MyToys;
-import java.awt.Image;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +19,7 @@ import java.sql.ResultSet;
  */
 public class UserDAO implements Serializable {
 
-    private final static String DEFAULT_IMG = "/Users/ngochuu/Desktop/JAVA_WEB/Project/RealEstate_V2/web/img/img_default.png";
+    private final static String DEFAULT_IMG = "img/img_default.png";
 
     private Connection conn;
     private PreparedStatement pstm;
@@ -52,13 +47,10 @@ public class UserDAO implements Serializable {
 
     public boolean createAccount(UserDTO dto) throws Exception {
         boolean check = false;
-
         try {
             conn = DatabaseUtils.getConnection();
             if (conn != null) {
                 String sql = "INSERT INTO tblUsers (username, password, fullname, phone, address, email, isActive, roleName, avatar) values (?,?,?,?,?,?,?,?,?)";
-                File image = new File(DEFAULT_IMG);
-                FileInputStream inputStream = new FileInputStream(image);
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, dto.getUsername());
                 pstm.setString(2, MyToys.generateHash(dto.getPassword()));
@@ -68,7 +60,28 @@ public class UserDAO implements Serializable {
                 pstm.setString(6, dto.getEmail());
                 pstm.setBoolean(7, dto.isActive());
                 pstm.setString(8, dto.getRoleName());
-                pstm.setBinaryStream(9, (InputStream) inputStream, (int) image.length());
+                pstm.setString(9, DEFAULT_IMG);
+                check = pstm.executeUpdate() > 0;
+            }
+        } finally {
+            closeConnection();
+        }
+        return check;
+    }
+    
+    public boolean updateInfo(String username, String fullname, String phone, String address, String email, String avatar) throws Exception {
+        boolean check = false;
+        try {
+            conn = DatabaseUtils.getConnection();
+            if (conn != null) {
+                String sql = "UPDATE tblUsers SET fullname = ?, phone = ?, address = ?, email = ?, avatar = ? WHERE username = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, fullname);
+                pstm.setString(2, phone);
+                pstm.setString(3, address);
+                pstm.setString(4, email);
+                pstm.setString(5, avatar);
+                pstm.setString(6, username);
                 check = pstm.executeUpdate() > 0;
             }
         } finally {
@@ -92,7 +105,7 @@ public class UserDAO implements Serializable {
                     dto.setAddress(rs.getString("address"));
                     dto.setPhone(rs.getString("phone"));
                     dto.setEmail(rs.getString("email"));
-                    dto.setAvatar(rs.getBytes("avatar"));
+                    dto.setAvatar(rs.getString("avatar"));
                 }
             }
         } finally {

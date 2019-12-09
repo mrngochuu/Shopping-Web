@@ -13,13 +13,13 @@ import java.io.Serializable;
  */
 public class UserDTO implements Serializable {
     private String username, password, fullname, phone, address, email, roleName;
-    private byte [] avatar;
+    private String avatar;
     private boolean active;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String fullname, String phone, String address, String email, String roleName, byte[] avatar, boolean active) {
+    public UserDTO(String username, String password, String fullname, String phone, String address, String email, String roleName, String avatar, boolean active) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
@@ -99,11 +99,11 @@ public class UserDTO implements Serializable {
         this.roleName = roleName;
     }
 
-    public byte[] getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

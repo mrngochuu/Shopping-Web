@@ -28,9 +28,9 @@ public class ShowInfoAction extends ActionSupport {
         UserDAO dao = new UserDAO();
         UserDTO dto = dao.getUserInfoFromUser(username);
         HttpServletRequest request = ServletActionContext.getRequest();
+        System.out.println("avatar: " + dto.getAvatar());
         if (dto != null) {
             request.setAttribute("USER", dto);
-            session.put("avatar", dto.getAvatar()); 
             return "success";
         }
         request.setAttribute("ERROR", "Show infomation failed!");

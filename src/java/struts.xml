@@ -32,5 +32,13 @@
             <result name="error">error.jsp</result>
             <result name="input">index.jsp</result>
         </action>
+        
+        <action name="UpdateInfoAction" class="huudn.actions.UpdateInfoAction">
+            <exception-mapping exception="java.lang.Exception" result="input"/>
+            <result name="success">ShowInfoAction</result>
+            <result name="invalid">info.jsp</result>
+            <result name="error">error.jsp</result>
+            <result name="input">info.jsp</result>
+        </action>
     </package>
 </struts>

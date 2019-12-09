@@ -14,21 +14,17 @@
         <sb:head/>
     </head>
     <body>
-        <%
-            
-        %>
         <div class="container-fluid bg-light"> 
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h3 class="card-title text-center"><s:property value="#session.USERNAME" />'s INFOMATION </h3>
-                            <s:form theme="simple" cssClass="form-signin row" action="RegisterAction" method="POST">
-                                <div class="col-lg-3">
-                                    <img alt="img" src="data:image/png;base64,${requestScope.USER.avatar}"/>
-                                    ${requestScope.USER.avatar}
+                            <s:form theme="simple" cssClass="form-signin row mt-5" action="UpdateInfoAction" method="POST" enctype="multipart/form-data" >
+                                <div class="offset-lg-1 col-lg-2 m-auto">
+                                    <img src="<s:property value="%{#request.USER.avatar}"/>" width="220" height ="220"  border="1" />
                                     </div>
-                                    <div class="offset-lg-5 col-lg-5">
+                                    <div class="offset-lg-2 col-lg-6">
                                     <s:textfield cssClass="form-control" name="fullname" value="%{#request.USER.fullname}" placeholder="Fullname" />
                                     <font color="red">
                                     <s:fielderror fieldName="lengthFullname"/>
@@ -53,6 +49,9 @@
                             <hr class="my-4">
                             <div class="mb-3">
                                 <a href="index.jsp">Home Page</a>
+                            </div>
+                            <div class="mb-3">
+                                <a href="changePassword.jsp">Change password</a>
                             </div>
                         </div>
                     </div>
